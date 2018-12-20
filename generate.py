@@ -247,12 +247,18 @@ if __name__ == '__main__':
         print("kHypotheses", kHypotheses)
         # references = [cap]
         references = list()  # references (true captions) for calculating BLEU-4 score
+        for ref in references[0]:
+            references.append(list(map(lambda w: rev_word_map[w] if rev_word_map[w] not in ['<pad>','<start>'] else '.',ref)))
         for j in range(allcaps.shape[0]):
             img_caps = allcaps[j].tolist()
             img_captions = list(
                 map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
                     img_caps))  # remove <start> and pads
             references.append(img_captions)
+        actual_captions = []
+        for ref in references[0]:
+            actual_captions.append(list(map(lambda w: rev_word_map[w] if rev_word_map[w] not in ['<pad>','<start>'] else '.', ref)))
+
         maxBleu = 0
         print("references", references)
         # pdb.set_trace()
@@ -274,9 +280,12 @@ if __name__ == '__main__':
             #     hypotheses.append(hyp_captions)
             print("hyp_captions", hyp_captions)
             hyp_captions = hyp_captions*5
+            hyp = []
+            for h in hyp_captions:
+                hyp.append(list(map(lambda w: rev_word_map[w] if rev_word_map[w] not in ['<pad>','<start>'] else '.', h)))
             print("len of hypotheses", len(hypotheses))
             # bleu = sentence_bleu(references, hypotheses)
-            bleu = corpus_bleu(references, hyp_captions)
+            bleu = corpus_bleu(actual_captions, hyp)
             if bleu > maxBleu:
                 print("best caption - ", hyp_captions[0])
                 maxBleu = max(maxBleu, bleu)
