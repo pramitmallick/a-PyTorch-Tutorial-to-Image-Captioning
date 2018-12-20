@@ -1,4 +1,5 @@
 import torch
+import pdb
 from torch import nn
 from torch.nn.utils.rnn import pack_padded_sequence
 import torch.nn.functional as F
@@ -232,6 +233,7 @@ if __name__ == '__main__':
         cap = caps[0]
         seq, alphas, seqs = caption_image_beam_search(encoder, decoder, img, word_map, args.beam_size)
         alphas = torch.FloatTensor(alphas)
+        pdb.set_trace()
         # print(seq)
         # print(alphas)
         print("cap", cap)
@@ -258,7 +260,7 @@ if __name__ == '__main__':
             print("hypotheses", hypotheses)
             print("len of hypotheses", len(hypotheses))
             # bleu = sentence_bleu(references, hypotheses)
-            bleu = corpus_bleu(references, hypotheses, emulate_multibleu=True)
+            bleu = corpus_bleu(references, hypotheses)
             if bleu > maxBleu:
                 print("best caption - ", hypotheses)
                 maxBleu = max(maxBleu, bleu)
