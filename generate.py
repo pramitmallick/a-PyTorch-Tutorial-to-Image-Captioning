@@ -290,7 +290,7 @@ if __name__ == '__main__':
             # bleu = sentence_bleu(references, hypotheses)
             bleu = corpus_bleu(actual_captions, hyp)
             if bleu > maxBleu:
-                best_caption = ' '.join(hyp[:len(hyp)-1])
+                best_caption = ' '.join(hyp[0][:len(hyp[0])-1])
                 # print("best caption - ", best_caption)
                 maxBleu = max(maxBleu, bleu)
         print("maxBleu", maxBleu)
