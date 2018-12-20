@@ -247,8 +247,8 @@ if __name__ == '__main__':
         print("kHypotheses", kHypotheses)
         # references = [cap]
         references = list()  # references (true captions) for calculating BLEU-4 score
-        for ref in references[0]:
-            references.append(list(map(lambda w: rev_word_map[w] if rev_word_map[w] not in ['<pad>','<start>'] else '.',ref)))
+        # for ref in references[0]:
+        #     references.append(list(map(lambda w: rev_word_map[w] if rev_word_map[w] not in ['<pad>','<start>'] else '.',ref)))
         for j in range(allcaps.shape[0]):
             img_caps = allcaps[j].tolist()
             img_captions = list(
