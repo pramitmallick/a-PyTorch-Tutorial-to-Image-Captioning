@@ -264,7 +264,7 @@ if __name__ == '__main__':
             hyp_caps = hypothesis
             hyp_captions = list(
                 map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
-                    hyp_caps))  # remove <start> and pads
+                    [hyp_caps]))  # remove <start> and pads
             hypotheses.append(hyp_captions)
             # for j in range(hypothesis.shape[0]):
             #     hyp_caps = hypothesis[j].tolist()
