@@ -144,7 +144,7 @@ def caption_image_beam_search(encoder, decoder, image_path, word_map, beam_size=
     seq = complete_seqs[i]
     alphas = complete_seqs_alpha[i]
 
-    return seq, alphas
+    return seq, alphas, seqs
 
 
 def visualize_att(image_path, seq, alphas, rev_word_map, smooth=True):
@@ -211,8 +211,11 @@ if __name__ == '__main__':
     rev_word_map = {v: k for k, v in word_map.items()}  # ix2word
 
     # Encode, decode with attention and beam search
-    seq, alphas = caption_image_beam_search(encoder, decoder, args.img, word_map, args.beam_size)
+    seq, alphas, seqs = caption_image_beam_search(encoder, decoder, args.img, word_map, args.beam_size)
     alphas = torch.FloatTensor(alphas)
+    print(seq)
+    print(alphas)
+    print(seqs)
 
     # Visualize caption and attention of best sequence
-    visualize_att(args.img, seq, alphas, rev_word_map, args.smooth)
+    # visualize_att(args.img, seq, alphas, rev_word_map, args.smooth)
