@@ -256,21 +256,27 @@ if __name__ == '__main__':
         maxBleu = 0
         print("references", references)
         # pdb.set_trace()
+        hypotheses = list()  # hypotheses (predictions)
         for hypothesis in kHypotheses:
-            hypotheses = list()  # hypotheses (predictions)
             # bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
             pdb.set_trace()
-            for j in range(hypothesis.shape[0]):
-                hyp_caps = hypothesis[j].tolist()
-                hyp_captions = list(
-                    map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
-                        img_caps))  # remove <start> and pads
-                hypotheses.append(hyp_captions)
-            print("hypotheses", hypotheses)
+            hyp_caps = hypothesis[j].tolist()
+            hyp_captions = list(
+                map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
+                    img_caps))  # remove <start> and pads
+            hypotheses.append(hyp_captions)
+            # for j in range(hypothesis.shape[0]):
+            #     hyp_caps = hypothesis[j].tolist()
+            #     hyp_captions = list(
+            #         map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
+            #             img_caps))  # remove <start> and pads
+            #     hypotheses.append(hyp_captions)
+            print("hyp_captions", hyp_captions)
+            hyp_captions = hyp_captions*5
             print("len of hypotheses", len(hypotheses))
             # bleu = sentence_bleu(references, hypotheses)
-            bleu = corpus_bleu(references, hypotheses)
+            bleu = corpus_bleu(references, hyp_captions)
             if bleu > maxBleu:
-                print("best caption - ", hypotheses)
+                print("best caption - ", hyp_captions[0])
                 maxBleu = max(maxBleu, bleu)
         print("maxBleu", maxBleu)
