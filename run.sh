@@ -7,4 +7,4 @@
 ###SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 
-python train.py
+python -u train.py
