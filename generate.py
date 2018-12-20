@@ -226,8 +226,8 @@ if __name__ == '__main__':
     val_loader = torch.utils.data.DataLoader(
         CaptionDataset(data_folder, data_name, 'VAL', transform=transforms.Compose([normalize])),
         batch_size=1, num_workers=workers, pin_memory=True)
-
-    pseudo_parallel_corpus = open('pseudo_parallel_corpus.txt', 'w')
+    fileName = 'pseudo_parallel_corpus_'+str(args.beam_size)+'.txt'
+    pseudo_parallel_corpus = open(fileName, 'w')
     # recent_bleu4 = validate(val_loader=val_loader,
     #                         encoder=encoder,
     #                         decoder=decoder,
@@ -235,8 +235,8 @@ if __name__ == '__main__':
 
     # Encode, decode with attention and beam search
     for i, (imgs, caps, caplens, allcaps) in enumerate(val_loader):
-        if i == 100:
-            break
+        # if i == 100:
+        #     break
         img = imgs[0]
         cap = caps[0]
         seq, alphas, kHypotheses = caption_image_beam_search(encoder, decoder, img, word_map, args.beam_size)
@@ -293,6 +293,7 @@ if __name__ == '__main__':
                 best_caption = ' '.join(hyp[0][:len(hyp[0])-1])
                 # print("best caption - ", best_caption)
                 maxBleu = max(maxBleu, bleu)
-        print("maxBleu", maxBleu)
-        print("best caption - ", best_caption)
-        pseudo_parallel_corpus.write(str(i)+'\t'+best_caption+'\n')
+        if i % args.beam_size == 0:
+            print("maxBleu", maxBleu)
+            print("best caption - ", best_caption)
+            pseudo_parallel_corpus.write(str(i)+'\t'+best_caption+'\n')
