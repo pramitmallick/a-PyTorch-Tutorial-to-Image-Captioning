@@ -236,10 +236,25 @@ if __name__ == '__main__':
         # print(alphas)
         print("cap", cap)
         print("seqs", seqs)
-        references = [cap]
+        # references = [cap]
+        references = list()  # references (true captions) for calculating BLEU-4 score
+        for j in range(allcaps.shape[0]):
+            img_caps = allcaps[j].tolist()
+            img_captions = list(
+                map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
+                    img_caps))  # remove <start> and pads
+            references.append(img_captions)
+        hypotheses = list()  # hypotheses (predictions)
         maxBleu = 0
-        for hypotheses in seqs:
+        for hypothesis in seqs:
             # bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
-            bleu = sentence_bleu(references, [hypotheses])
+            for j in range(hypothesis.shape[0]):
+                hyp_caps = hypothesis[j].tolist()
+                hyp_captions = list(
+                    map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
+                        img_caps))  # remove <start> and pads
+                hypotheses.append(hyp_captions)
+
+            bleu = sentence_bleu(references, hypotheses)
             maxBleu = max(maxBleu, bleu)
         print("maxBleu", maxBleu)
