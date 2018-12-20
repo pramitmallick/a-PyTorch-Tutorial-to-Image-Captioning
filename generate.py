@@ -261,6 +261,7 @@ if __name__ == '__main__':
             # bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
             pdb.set_trace()
             # hyp_caps = hypothesis[j].tolist()
+            hyp_caps = hypothesis
             hyp_captions = list(
                 map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
                     hyp_caps))  # remove <start> and pads
