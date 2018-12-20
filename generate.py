@@ -256,7 +256,8 @@ if __name__ == '__main__':
                         img_caps))  # remove <start> and pads
                 hypotheses.append(hyp_captions)
             print("hypotheses", hypotheses)
-            bleu = sentence_bleu(references, hypotheses)
+            # bleu = sentence_bleu(references, hypotheses)
+            bleu = corpus_bleu(references, hypotheses, emulate_multibleu=True)
             if bleu > maxBleu:
                 print("best caption - ", hypotheses)
                 maxBleu = max(maxBleu, bleu)
