@@ -235,7 +235,7 @@ if __name__ == '__main__':
 
     # Encode, decode with attention and beam search
     for i, (imgs, caps, caplens, allcaps) in enumerate(val_loader):
-        if i == 10:
+        if i == 100:
             break
         img = imgs[0]
         cap = caps[0]
