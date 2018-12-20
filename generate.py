@@ -260,10 +260,10 @@ if __name__ == '__main__':
         for hypothesis in kHypotheses:
             # bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
             pdb.set_trace()
-            hyp_caps = hypothesis[j].tolist()
+            # hyp_caps = hypothesis[j].tolist()
             hyp_captions = list(
                 map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
-                    img_caps))  # remove <start> and pads
+                    hyp_caps))  # remove <start> and pads
             hypotheses.append(hyp_captions)
             # for j in range(hypothesis.shape[0]):
             #     hyp_caps = hypothesis[j].tolist()
