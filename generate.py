@@ -17,7 +17,7 @@ from scipy.misc import imread, imresize
 from PIL import Image
 from datasets import *
 from utils import *
-from nltk.translate.bleu_score import corpus_bleu
+from nltk.translate.bleu_score import corpus_bleu, sentence_bleu
 # from caption import caption_image_beam_search
 
 def caption_image_beam_search(encoder, decoder, image, word_map, beam_size=3):
@@ -154,7 +154,7 @@ def caption_image_beam_search(encoder, decoder, image, word_map, beam_size=3):
 
     return seq, alphas, seqs
 
-    
+
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -239,6 +239,7 @@ if __name__ == '__main__':
         references = [cap]
         maxBleu = 0
         for hypotheses in seqs:
-            bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
+            # bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
+            bleu = sentence_bleu(references, [hypotheses])
             maxBleu = max(maxBleu, bleu4)
         print("maxBleu", maxBleu)
