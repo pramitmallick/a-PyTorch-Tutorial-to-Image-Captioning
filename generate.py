@@ -241,13 +241,13 @@ if __name__ == '__main__':
         cap = caps[0]
         seq, alphas, kHypotheses = caption_image_beam_search(encoder, decoder, img, word_map, args.beam_size)
         alphas = torch.FloatTensor(alphas)
-        pdb.set_trace()
+        # pdb.set_trace()
         # print(seq)
         # print(alphas)
         # print("cap", cap)
         # print("kHypotheses", kHypotheses)
         # references = [cap]
-        references = list()  # references (true captions) for calculating BLEU-4 score
+        references = []  # references (true captions) for calculating BLEU-4 score
         # for ref in references[0]:
         #     references.append(list(map(lambda w: rev_word_map[w] if rev_word_map[w] not in ['<pad>','<start>'] else '.',ref)))
         for j in range(allcaps.shape[0]):
