@@ -244,9 +244,10 @@ if __name__ == '__main__':
                 map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
                     img_caps))  # remove <start> and pads
             references.append(img_captions)
-        hypotheses = list()  # hypotheses (predictions)
         maxBleu = 0
+        print("references", references)
         for hypothesis in seqs:
+            hypotheses = list()  # hypotheses (predictions)
             # bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
             for j in range(hypothesis.shape[0]):
                 hyp_caps = hypothesis[j].tolist()
@@ -254,7 +255,9 @@ if __name__ == '__main__':
                     map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
                         img_caps))  # remove <start> and pads
                 hypotheses.append(hyp_captions)
-
+            print("hypotheses", hypotheses)
             bleu = sentence_bleu(references, hypotheses)
-            maxBleu = max(maxBleu, bleu)
+            if bleu > maxBleu:
+                print("best caption - ", hypotheses)
+                maxBleu = max(maxBleu, bleu)
         print("maxBleu", maxBleu)
