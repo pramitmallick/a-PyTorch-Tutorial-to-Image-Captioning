@@ -1,5 +1,6 @@
 import torch
 import pdb
+import numpy as np
 from torch import nn
 from torch.nn.utils.rnn import pack_padded_sequence
 import torch.nn.functional as F
@@ -153,7 +154,13 @@ def caption_image_beam_search(encoder, decoder, image, word_map, beam_size=3):
     seq = complete_seqs[i]
     alphas = complete_seqs_alpha[i]
 
-    return seq, alphas, seqs
+    kmax = np.array(complete_seqs_scores)
+    kmaxIndices = kmax.argsort()[-k:][::-1]
+    kHypotheses = list()
+    for ind in kmaxIndices:
+        kHypotheses.append(complete_seqs[ind])
+
+    return seq, alphas, kHypotheses
 
 
 
@@ -231,13 +238,13 @@ if __name__ == '__main__':
             break
         img = imgs[0]
         cap = caps[0]
-        seq, alphas, seqs = caption_image_beam_search(encoder, decoder, img, word_map, args.beam_size)
+        seq, alphas, kHypotheses = caption_image_beam_search(encoder, decoder, img, word_map, args.beam_size)
         alphas = torch.FloatTensor(alphas)
         pdb.set_trace()
         # print(seq)
         # print(alphas)
         print("cap", cap)
-        print("seqs", seqs)
+        print("kHypotheses", kHypotheses)
         # references = [cap]
         references = list()  # references (true captions) for calculating BLEU-4 score
         for j in range(allcaps.shape[0]):
@@ -248,9 +255,11 @@ if __name__ == '__main__':
             references.append(img_captions)
         maxBleu = 0
         print("references", references)
-        for hypothesis in seqs:
+        # pdb.set_trace()
+        for hypothesis in kHypotheses:
             hypotheses = list()  # hypotheses (predictions)
             # bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
+            pdb.set_trace()
             for j in range(hypothesis.shape[0]):
                 hyp_caps = hypothesis[j].tolist()
                 hyp_captions = list(
