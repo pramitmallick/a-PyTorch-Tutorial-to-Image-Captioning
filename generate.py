@@ -241,5 +241,5 @@ if __name__ == '__main__':
         for hypotheses in seqs:
             # bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
             bleu = sentence_bleu(references, [hypotheses])
-            maxBleu = max(maxBleu, bleu4)
+            maxBleu = max(maxBleu, bleu)
         print("maxBleu", maxBleu)
