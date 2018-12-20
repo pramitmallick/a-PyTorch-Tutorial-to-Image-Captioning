@@ -1,0 +1,100 @@
+0	a man standing next to a herd of elephants
+1	a man standing next to a herd of elephants
+2	a man standing next to a herd of elephants
+3	a man standing next to a herd of elephants
+4	a man standing next to a herd of elephants
+5	a kitchen with a sink stove and refrigerator
+6	a kitchen with a sink stove and refrigerator
+7	a kitchen with a sink stove and refrigerator
+8	a kitchen with a sink stove and refrigerator
+9	a kitchen with a sink stove and refrigerator
+10	a woman holding a cat in her arms
+11	a woman holding a cat in her arms
+12	a woman holding a cat in her arms
+13	a woman holding a cat in her arms
+14	a woman holding a cat in her arms
+15	a small bathroom with a toilet and a sink
+16	a small bathroom with a toilet and a sink
+17	a small bathroom with a toilet and a sink
+18	a small bathroom with a toilet and a sink
+19	a small bathroom with a toilet and a sink
+20	a kitchen with a sink and a refrigerator
+21	a kitchen with a sink and a refrigerator
+22	a kitchen with a sink and a refrigerator
+23	a kitchen with a sink and a refrigerator
+24	a kitchen with a sink and a refrigerator
+25	a man riding a bike down a street
+26	a man riding a bike down a street
+27	a man riding a bike down a street
+28	a man riding a bike down a street
+29	a man riding a bike down a street
+30	a bathroom with a sink toilet and shower
+31	a bathroom with a sink toilet and shower
+32	a bathroom with a sink toilet and shower
+33	a bathroom with a sink toilet and shower
+34	a bathroom with a sink toilet and shower
+35	a parking meter sitting next to a street
+36	a parking meter sitting next to a street
+37	a parking meter sitting next to a street
+38	a parking meter sitting next to a street
+39	a parking meter sitting next to a street
+40	a bathroom with a sink and a bathtub
+41	a bathroom with a sink and a bathtub
+42	a bathroom with a sink and a bathtub
+43	a bathroom with a sink and a bathtub
+44	a bathroom with a sink and a bathtub
+45	a close up of a yellow fire hydrant
+46	a close up of a yellow fire hydrant
+47	a close up of a yellow fire hydrant
+48	a close up of a yellow fire hydrant
+49	a close up of a yellow fire hydrant
+50	a blue car with a surfboard on top
+51	a blue car with a surfboard on top
+52	a blue car with a surfboard on top
+53	a blue car with a surfboard on top
+54	a blue car with a surfboard on top
+55	a black cat drinking water from a toilet
+56	a black cat drinking water from a toilet
+57	a black cat drinking water from a toilet
+58	a black cat drinking water from a toilet
+59	a black cat drinking water from a toilet
+60	a tall clock tower with a sky background
+61	a tall clock tower with a sky background
+62	a tall clock tower with a sky background
+63	a tall clock tower with a sky background
+64	a tall clock tower with a sky background
+65	a man riding a motorcycle down a street
+66	a man riding a motorcycle down a street
+67	a man riding a motorcycle down a street
+68	a man riding a motorcycle down a street
+69	a man riding a motorcycle down a street
+70	a person sitting at a desk with a laptop
+71	a person sitting at a desk with a laptop
+72	a person sitting at a desk with a laptop
+73	a person sitting at a desk with a laptop
+74	a person sitting at a desk with a laptop
+75	a bunch of bananas sitting on a table next to a box
+76	a bunch of bananas sitting on a table next to a box
+77	a bunch of bananas sitting on a table next to a box
+78	a bunch of bananas sitting on a table next to a box
+79	a bunch of bananas sitting on a table next to a box
+80	a small plane is sitting on a runway
+81	a small plane is sitting on a runway
+82	a small plane is sitting on a runway
+83	a small plane is sitting on a runway
+84	a small plane is sitting on a runway
+85	a large air plane on a run way
+86	a large air plane on a run way
+87	a large air plane on a run way
+88	a large air plane on a run way
+89	a large air plane on a run way
+90	a car parked in front of a building
+91	a car parked in front of a building
+92	a car parked in front of a building
+93	a car parked in front of a building
+94	a car parked in front of a building
+95	a traffic light sitting on the side of a road
+96	a traffic light sitting on the side of a road
+97	a traffic light sitting on the side of a road
+98	a traffic light sitting on the side of a road
+99	a traffic light sitting on the side of a road
