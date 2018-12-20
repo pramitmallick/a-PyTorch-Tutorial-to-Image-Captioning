@@ -225,8 +225,9 @@ if __name__ == '__main__':
 
     val_loader = torch.utils.data.DataLoader(
         CaptionDataset(data_folder, data_name, 'VAL', transform=transforms.Compose([normalize])),
-        batch_size=1, shuffle=True, num_workers=workers, pin_memory=True)
+        batch_size=1, num_workers=workers, pin_memory=True)
 
+    pseudo_parallel_corpus = open('pseudo_parallel_corpus.txt', 'w')
     # recent_bleu4 = validate(val_loader=val_loader,
     #                         encoder=encoder,
     #                         decoder=decoder,
@@ -243,8 +244,8 @@ if __name__ == '__main__':
         pdb.set_trace()
         # print(seq)
         # print(alphas)
-        print("cap", cap)
-        print("kHypotheses", kHypotheses)
+        # print("cap", cap)
+        # print("kHypotheses", kHypotheses)
         # references = [cap]
         references = list()  # references (true captions) for calculating BLEU-4 score
         # for ref in references[0]:
@@ -260,12 +261,14 @@ if __name__ == '__main__':
             actual_captions.append(list(map(lambda w: rev_word_map[w] if rev_word_map[w] not in ['<pad>','<start>'] else '.', ref)))
 
         maxBleu = 0
-        print("references", references)
+        best_caption = ''
+        # corresponding_caption = 
+        # print("references", references)
         # pdb.set_trace()
         hypotheses = list()  # hypotheses (predictions)
         for hypothesis in kHypotheses:
             # bleu4 = corpus_bleu(references, [hypotheses], emulate_multibleu=True)
-            pdb.set_trace()
+            # pdb.set_trace()
             # hyp_caps = hypothesis[j].tolist()
             hyp_caps = hypothesis
             hyp_captions = list(
@@ -278,15 +281,18 @@ if __name__ == '__main__':
             #         map(lambda c: [w for w in c if w not in {word_map['<start>'], word_map['<pad>']}],
             #             img_caps))  # remove <start> and pads
             #     hypotheses.append(hyp_captions)
-            print("hyp_captions", hyp_captions)
+            # print("hyp_captions", hyp_captions)
             hyp_captions = hyp_captions*5
             hyp = []
             for h in hyp_captions:
                 hyp.append(list(map(lambda w: rev_word_map[w] if rev_word_map[w] not in ['<pad>','<start>'] else '.', h)))
-            print("len of hypotheses", len(hypotheses))
+            # print("len of hypotheses", len(hypotheses))
             # bleu = sentence_bleu(references, hypotheses)
             bleu = corpus_bleu(actual_captions, hyp)
             if bleu > maxBleu:
-                print("best caption - ", hyp_captions[0])
+                best_caption = ' '.join(hyp[:len(hyp)-1])
+                # print("best caption - ", best_caption)
                 maxBleu = max(maxBleu, bleu)
         print("maxBleu", maxBleu)
+        print("best caption - ", best_caption)
+        pseudo_parallel_corpus.write(str(i)+'\t'+best_caption+'\n')
